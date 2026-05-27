@@ -8,6 +8,7 @@
     <link rel="manifest" href="./manifesto/site.webmanifest">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f7f4">
     <title>Models — Mark Manson</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3006,6 +3007,13 @@
 
         // ── THEME SWITCHER ──
         const themeBtns = document.querySelectorAll('.theme-btn');
+
+        const themeColors = {
+            'default':  '#f8f7f4',
+            'gruvbox':  '#282828',
+            'rosepine': '#faf4ed'
+        };
+
         const savedTheme = localStorage.getItem('theme') || 'default';
         applyTheme(savedTheme);
 
@@ -3023,6 +3031,12 @@
                 document.documentElement.setAttribute('data-theme', t);
             }
             themeBtns.forEach(b => b.classList.toggle('active', b.dataset.t === t));
+
+            // Update theme-color meta tag for standalone PWA chrome
+            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+            if (metaThemeColor) {
+                metaThemeColor.setAttribute('content', themeColors[t] || themeColors['default']);
+            }
         }
     </script>
 </body>
