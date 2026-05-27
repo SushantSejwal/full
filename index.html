@@ -44,6 +44,141 @@
             --body: 'Inter', system-ui, sans-serif;
         }
 
+        /* ── GRUVBOX DARK ── */
+        [data-theme="gruvbox"] {
+            --bg: #282828;
+            --paper: #32302f;
+            --paper-warm: #3c3836;
+            --ink: #ebdbb2;
+            --ink-mid: #d5c4a1;
+            --ink-light: #bdae93;
+            --ink-faint: #928374;
+            --amber: #d79921;
+            --amber-pale: #3c3836;
+            --rule: rgba(235, 219, 178, .08);
+            --rule-med: rgba(235, 219, 178, .14);
+        }
+
+        [data-theme="gruvbox"] .hero,
+        [data-theme="gruvbox"] .conclusion {
+            background: #1d2021;
+        }
+
+        [data-theme="gruvbox"] .hero-title,
+        [data-theme="gruvbox"] .conclusion-title {
+            color: #ebdbb2;
+        }
+
+        [data-theme="gruvbox"] .hero-subtitle {
+            color: rgba(213, 196, 161, .5);
+        }
+
+        [data-theme="gruvbox"] .hero-meta {
+            border-top-color: rgba(235, 219, 178, .1);
+        }
+
+        [data-theme="gruvbox"] .hero-meta-label {
+            color: rgba(235, 219, 178, .28);
+        }
+
+        [data-theme="gruvbox"] .hero-meta-value {
+            color: rgba(235, 219, 178, .7);
+        }
+
+        [data-theme="gruvbox"] .conclusion-body {
+            color: rgba(213, 196, 161, .55);
+        }
+
+        [data-theme="gruvbox"] .pillar-numeral,
+        [data-theme="gruvbox"] .takeaway-num {
+            color: rgba(235, 219, 178, .06);
+        }
+
+        /* ── ROSÉ PINE DAWN ── */
+        [data-theme="rosepine"] {
+            --bg: #faf4ed;
+            --paper: #fffaf3;
+            --paper-warm: #f2e9e1;
+            --ink: #575279;
+            --ink-mid: #575279;
+            --ink-light: #797593;
+            --ink-faint: #9893a5;
+            --amber: #b4637a;
+            --amber-pale: #f2e9e1;
+            --rule: rgba(87, 82, 121, .08);
+            --rule-med: rgba(87, 82, 121, .14);
+        }
+
+        [data-theme="rosepine"] .hero,
+        [data-theme="rosepine"] .conclusion {
+            background: #575279;
+        }
+
+        [data-theme="rosepine"] .hero-title,
+        [data-theme="rosepine"] .conclusion-title {
+            color: #faf4ed;
+        }
+
+        [data-theme="rosepine"] .hero-subtitle {
+            color: rgba(250, 244, 237, .5);
+        }
+
+        [data-theme="rosepine"] .hero-meta {
+            border-top-color: rgba(250, 244, 237, .12);
+        }
+
+        [data-theme="rosepine"] .hero-meta-label {
+            color: rgba(250, 244, 237, .3);
+        }
+
+        [data-theme="rosepine"] .hero-meta-value {
+            color: rgba(250, 244, 237, .72);
+        }
+
+        [data-theme="rosepine"] .conclusion-body {
+            color: rgba(250, 244, 237, .55);
+        }
+
+        [data-theme="rosepine"] .pillar-numeral,
+        [data-theme="rosepine"] .takeaway-num {
+            color: rgba(87, 82, 121, .06);
+        }
+
+        /* ── THEME SWITCHER ── */
+        .theme-switcher {
+            padding: 16px 24px 0;
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .theme-btn {
+            flex: 1;
+            height: 26px;
+            border-radius: 4px;
+            border: 1.5px solid var(--rule-med);
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .04em;
+            color: var(--ink-faint);
+            background: var(--paper-warm);
+            transition: border-color .14s, color .14s, background .14s;
+            white-space: nowrap;
+            padding: 0 4px;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--amber);
+            color: var(--amber);
+        }
+
+        .theme-btn.active {
+            border-color: var(--amber);
+            background: var(--amber-pale);
+            color: var(--amber);
+        }
+
         html {
             scroll-behavior: smooth
         }
@@ -1050,6 +1185,12 @@
             <div class="sidebar-book-title">Models</div>
             <div class="sidebar-book-author">Mark Manson · Full Reading Edition</div>
         </div>
+        <div class="theme-switcher">
+            <button class="theme-btn active" data-t="default" title="Default">Default</button>
+            <button class="theme-btn" data-t="gruvbox" title="Gruvbox Dark">Gruvbox</button>
+            <button class="theme-btn" data-t="rosepine" title="Rosé Pine Dawn">Rosé Pine</button>
+        </div>
+
         <div class="nav-group">
             <div class="nav-group-label">Front Matter</div>
             <a class="nav-item active" href="#overview"><span class="nav-num">00</span><span class="nav-label">Overview
@@ -3141,6 +3282,27 @@
                 }
             });
         });
+
+        // THEME SWITCHER
+        const themeBtns = document.querySelectorAll('.theme-btn');
+        const savedTheme = localStorage.getItem('theme') || 'default';
+        applyTheme(savedTheme);
+
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                applyTheme(btn.dataset.t);
+                localStorage.setItem('theme', btn.dataset.t);
+            });
+        });
+
+        function applyTheme(t) {
+            if (t === 'default') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', t);
+            }
+            themeBtns.forEach(b => b.classList.toggle('active', b.dataset.t === t));
+        }
     </script>
 </body>
 

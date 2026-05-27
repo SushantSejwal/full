@@ -40,6 +40,145 @@
             --content-pad: 72px;
         }
 
+        /* ── GRUVBOX DARK ── */
+        [data-theme="gruvbox"] {
+            --bg: #282828;
+            --surface: #32302f;
+            --surface-tint: #3c3836;
+            --text-primary: #ebdbb2;
+            --text-secondary: #d5c4a1;
+            --text-tertiary: #928374;
+            --accent: #d79921;
+            --border-light: rgba(235, 219, 178, 0.08);
+            --border-medium: rgba(235, 219, 178, 0.15);
+        }
+
+        [data-theme="gruvbox"] .hero,
+        [data-theme="gruvbox"] .conclusion {
+            background: #1d2021;
+        }
+
+        [data-theme="gruvbox"] .hero-title,
+        [data-theme="gruvbox"] .conclusion-title {
+            color: #ebdbb2;
+        }
+
+        [data-theme="gruvbox"] .hero-subtitle {
+            color: rgba(213, 196, 161, 0.5);
+        }
+
+        [data-theme="gruvbox"] .hero-meta {
+            border-top-color: rgba(235, 219, 178, 0.1);
+        }
+
+        [data-theme="gruvbox"] .hero-meta-label {
+            color: rgba(235, 219, 178, 0.28);
+        }
+
+        [data-theme="gruvbox"] .hero-meta-value {
+            color: rgba(235, 219, 178, 0.72);
+        }
+
+        [data-theme="gruvbox"] .conclusion-body {
+            color: rgba(213, 196, 161, 0.55);
+        }
+
+        [data-theme="gruvbox"] .pillar-numeral,
+        [data-theme="gruvbox"] .takeaway-num {
+            color: rgba(235, 219, 178, 0.06);
+        }
+
+        [data-theme="gruvbox"] .nav-item.active {
+            background: #3c3836;
+        }
+
+        /* ── ROSÉ PINE DAWN ── */
+        [data-theme="rosepine"] {
+            --bg: #faf4ed;
+            --surface: #fffaf3;
+            --surface-tint: #f2e9e1;
+            --text-primary: #575279;
+            --text-secondary: #575279;
+            --text-tertiary: #9893a5;
+            --accent: #b4637a;
+            --border-light: rgba(87, 82, 121, 0.08);
+            --border-medium: rgba(87, 82, 121, 0.15);
+        }
+
+        [data-theme="rosepine"] .hero,
+        [data-theme="rosepine"] .conclusion {
+            background: #575279;
+        }
+
+        [data-theme="rosepine"] .hero-title,
+        [data-theme="rosepine"] .conclusion-title {
+            color: #faf4ed;
+        }
+
+        [data-theme="rosepine"] .hero-subtitle {
+            color: rgba(250, 244, 237, 0.5);
+        }
+
+        [data-theme="rosepine"] .hero-meta {
+            border-top-color: rgba(250, 244, 237, 0.12);
+        }
+
+        [data-theme="rosepine"] .hero-meta-label {
+            color: rgba(250, 244, 237, 0.3);
+        }
+
+        [data-theme="rosepine"] .hero-meta-value {
+            color: rgba(250, 244, 237, 0.72);
+        }
+
+        [data-theme="rosepine"] .conclusion-body {
+            color: rgba(250, 244, 237, 0.55);
+        }
+
+        [data-theme="rosepine"] .pillar-numeral,
+        [data-theme="rosepine"] .takeaway-num {
+            color: rgba(87, 82, 121, 0.06);
+        }
+
+        [data-theme="rosepine"] .nav-item.active {
+            background: #f2e9e1;
+        }
+
+        /* ── THEME SWITCHER ── */
+        .theme-switcher {
+            padding: 14px 22px 0;
+            display: flex;
+            gap: 7px;
+            flex-shrink: 0;
+        }
+
+        .theme-btn {
+            flex: 1;
+            height: 26px;
+            border-radius: 4px;
+            border: 1.5px solid var(--border-medium);
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            color: var(--text-tertiary);
+            background: var(--surface-tint);
+            transition: border-color 0.15s, color 0.15s, background 0.15s;
+            padding: 0 4px;
+            white-space: nowrap;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .theme-btn.active {
+            border-color: var(--accent);
+            background: var(--surface-tint);
+            color: var(--accent);
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -1029,6 +1168,12 @@
         <div class="sidebar-header">
             <div class="sidebar-book-title">Models</div>
             <div class="sidebar-book-author">Mark Manson · 2011</div>
+        </div>
+
+        <div class="theme-switcher">
+            <button class="theme-btn active" data-t="default">Default</button>
+            <button class="theme-btn" data-t="gruvbox">Gruvbox</button>
+            <button class="theme-btn" data-t="rosepine">Rosé Pine</button>
         </div>
 
         <div class="nav-group">
@@ -2858,6 +3003,27 @@
                 }
             });
         });
+
+        // ── THEME SWITCHER ──
+        const themeBtns = document.querySelectorAll('.theme-btn');
+        const savedTheme = localStorage.getItem('theme') || 'default';
+        applyTheme(savedTheme);
+
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                applyTheme(btn.dataset.t);
+                localStorage.setItem('theme', btn.dataset.t);
+            });
+        });
+
+        function applyTheme(t) {
+            if (t === 'default') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', t);
+            }
+            themeBtns.forEach(b => b.classList.toggle('active', b.dataset.t === t));
+        }
     </script>
 </body>
 
