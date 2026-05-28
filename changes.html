@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="./manifesto/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./manifesto/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./manifesto/favicon-16x16.png">
+    <link rel="manifest" href="./manifesto/site.webmanifest">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f7f4" id="metaThemeColor">
+    <title>No More Mr. Nice Guy - Chapter 9: Full Potential & Authenticity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ─────────────────────────────────────────
+           THEME TOKENS
+        ───────────────────────────────────────── */
+
+        /* Default — warm light (preserved exactly) */
+        :root {
+            --bg-page: #f8f7f4;
+            --bg-sidebar: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card-muted: #f2f0ec;
+            --bg-hero: #1a1917;
+            --bg-conclusion: #1a1917;
+            --bg-footer: #ffffff;
+
+            --text-primary: #1a1917;
+            --text-secondary: #4a4845;
+            --text-muted: #8c8a87;
+            --text-accent: #9a7355;
+
+            --border-subtle: rgba(0, 0, 0, 0.07);
+            --border-divider: rgba(0, 0, 0, 0.05);
+            --nav-active-bg: #f2f0ec;
+            --nav-hover-bg: rgba(0, 0, 0, 0.03);
+
+            --switcher-bg: #f0ede8;
+            --switcher-btn-active: #ffffff;
+            --switcher-text: #4a4845;
+            --switcher-text-active: #1a1917;
+            --switcher-shadow: rgba(0, 0, 0, 0.10);
+
+            --theme-meta-color: #f8f7f4;
+        }
+
+        /* Gruvbox — warm dark earth */
+        [data-theme="gruvbox"] {
+            --bg-page: #282828;
+            --bg-sidebar: #32302f;
+            --bg-card: #3c3836;
+            --bg-card-muted: #3c3836;
+            --bg-hero: #1d2021;
+            --bg-conclusion: #1d2021;
+            --bg-footer: #32302f;
+
+            --text-primary: #ebdbb2;
+            --text-secondary: #d5c4a1;
+            --text-muted: #928374;
+            --text-accent: #d79921;
+
+            --border-subtle: rgba(235, 219, 178, 0.08);
+            --border-divider: rgba(235, 219, 178, 0.05);
+            --nav-active-bg: rgba(215, 153, 33, 0.12);
+            --nav-hover-bg: rgba(235, 219, 178, 0.05);
+
+            --switcher-bg: #3c3836;
+            --switcher-btn-active: #504945;
+            --switcher-text: #928374;
+            --switcher-text-active: #ebdbb2;
+            --switcher-shadow: rgba(0, 0, 0, 0.30);
+
+            --theme-meta-color: #282828;
+        }
+
+        /* Rosé Pine Dawn — soft rose-parchment light */
+        [data-theme="rose-pine-dawn"] {
+            --bg-page: #faf4ed;
+            --bg-sidebar: #fffaf3;
+            --bg-card: #fffaf3;
+            --bg-card-muted: #f2e9e1;
+            --bg-hero: #232136;
+            --bg-conclusion: #232136;
+            --bg-footer: #fffaf3;
+
+            --text-primary: #575279;
+            --text-secondary: #6e6a86;
+            --text-muted: #9893a5;
+            --text-accent: #b4637a;
+
+            --border-subtle: rgba(87, 82, 121, 0.09);
+            --border-divider: rgba(87, 82, 121, 0.06);
+            --nav-active-bg: rgba(180, 99, 122, 0.08);
+            --nav-hover-bg: rgba(87, 82, 121, 0.04);
+
+            --switcher-bg: #f2e9e1;
+            --switcher-btn-active: #fffaf3;
+            --switcher-text: #9893a5;
+            --switcher-text-active: #575279;
+            --switcher-shadow: rgba(87, 82, 121, 0.12);
+
+            --theme-meta-color: #faf4ed;
+        }
+
+        /* ─────────────────────────────────────────
+           GLOBAL TRANSITION (theme switch)
+        ───────────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            transition:
+                background-color 0.28s ease,
+                color 0.28s ease,
+                border-color 0.28s ease,
+                box-shadow 0.28s ease;
+        }
+
+        /* Disable transition on reveal animations */
+        .content-block,
+        .pull-quote,
+        .insight-card,
+        .grid-3,
+        .comparison,
+        .takeaways,
+        .conclusion {
+            transition:
+                opacity 0.6s ease 0.1s,
+                transform 0.6s ease 0.1s,
+                background-color 0.28s ease,
+                color 0.28s ease,
+                border-color 0.28s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ─────────────────────────────────────────
+           THEME SWITCHER
+        ───────────────────────────────────────── */
+        .theme-switcher-wrap {
+            margin-top: 28px;
+            margin-bottom: 0;
+        }
+
+        .theme-switcher-label {
+            font-size: 9.5px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .theme-switcher {
+            display: flex;
+            background: var(--switcher-bg);
+            border-radius: 8px;
+            padding: 3px;
+            gap: 2px;
+        }
+
+        .theme-btn {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 7px 4px 6px;
+            border: none;
+            background: transparent;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--switcher-text);
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+        }
+
+        .theme-btn[aria-pressed="true"] {
+            background: var(--switcher-btn-active);
+            color: var(--switcher-text-active);
+            box-shadow: 0 1px 3px var(--switcher-shadow);
+        }
+
+        .theme-btn .swatch {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(0, 0, 0, 0.08);
+            flex-shrink: 0;
+        }
+
+        .swatch-default {
+            background: linear-gradient(135deg, #f8f7f4 50%, #9a7355 50%);
+        }
+
+        .swatch-gruvbox {
+            background: linear-gradient(135deg, #282828 50%, #d79921 50%);
+        }
+
+        .swatch-rosepine {
+            background: linear-gradient(135deg, #faf4ed 50%, #b4637a 50%);
+        }
+
+        /* SIDEBAR NAVIGATION */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 252px;
+            height: 100vh;
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border-subtle);
+            padding: 48px 28px;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-title {
+            font-family: 'Lora', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 32px;
+            line-height: 1.3;
+        }
+
+        .nav-group {
+            margin-bottom: 36px;
+        }
+
+        .nav-group-label {
+            font-size: 9.5px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .nav-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-left: 2px solid transparent;
+            text-decoration: none;
+        }
+
+        .nav-item:hover {
+            color: var(--text-primary);
+            background: var(--nav-hover-bg);
+        }
+
+        .nav-item.active {
+            border-left-color: var(--text-accent);
+            background: var(--nav-active-bg);
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .nav-number {
+            font-family: 'Inter', sans-serif;
+            font-variant-numeric: tabular-nums;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            min-width: 24px;
+        }
+
+        /* MOBILE MENU TOGGLE */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            width: 44px;
+            height: 44px;
+            background: var(--bg-sidebar);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 20px;
+            height: 1.5px;
+            background: var(--text-primary);
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 252px;
+            min-height: 100vh;
+            background: var(--bg-page);
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: var(--bg-hero);
+            color: white;
+            padding: 80px 40px;
+            margin: 0 -40px 60px -40px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'Lora', serif;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+
+        .hero-subtitle {
+            font-family: 'Lora', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-meta-label {
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            margin-bottom: 4px;
+            opacity: 0.8;
+        }
+
+        /* SECTION LABELS */
+        .section-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-accent);
+            margin-top: 48px;
+            margin-bottom: 12px;
+        }
+
+        /* CHAPTER HEADER */
+        .chapter-header {
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .chapter-number {
+            font-family: 'Lora', serif;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .chapter-number::before {
+            content: '— ';
+        }
+
+        .chapter-title {
+            font-family: 'Lora', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.25;
+        }
+
+        .chapter-description {
+            font-family: 'Lora', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* BODY CONTENT */
+        .content-block {
+            margin-bottom: 36px;
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        .content-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        em {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        /* PULL QUOTES */
+        .pull-quote {
+            border-left: 2px solid var(--text-accent);
+            padding-left: 24px;
+            margin: 36px 0;
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        .pull-quote.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pull-quote p {
+            font-family: 'Lora', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--text-primary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* INSIGHT CARDS */
+        .insight-card {
+            background: var(--bg-card-muted);
+            border: 1px solid var(--border-subtle);
+            padding: 24px;
+            margin: 32px 0;
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        .insight-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .insight-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-accent);
+            margin-bottom: 12px;
+        }
+
+        .insight-card p {
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .insight-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* GRID LAYOUTS */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 36px 0;
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        .grid-3.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .grid-item {
+            position: relative;
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 12px;
+        }
+
+        .grid-number {
+            font-family: 'Lora', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-accent);
+            line-height: 1;
+            display: block;
+        }
+
+        .grid-item-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .grid-item-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* TWO-COLUMN COMPARISON */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin: 36px 0;
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        .comparison.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .comparison-col {
+            padding: 0;
+        }
+
+        .comparison-header {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .comparison-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .comparison-item {
+            font-size: 14px;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .comparison-item::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--text-accent);
+            font-weight: 600;
+        }
+
+        .comparison-col:nth-child(2) .comparison-item::before {
+            content: '→';
+        }
+
+        /* TAKEAWAYS */
+        .takeaways {
+            margin: 48px 0;
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        .takeaways.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .takeaway-item {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-divider);
+            display: flex;
+            gap: 16px;
+        }
+
+        .takeaway-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .takeaway-number {
+            font-family: 'Lora', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-accent);
+            opacity: 0.18;
+            min-width: 40px;
+            line-height: 1.2;
+        }
+
+        .takeaway-content p {
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            line-height: 1.6;
+        }
+
+        .takeaway-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* DIVIDER */
+        .divider {
+            text-align: center;
+            margin: 48px 0;
+            color: var(--text-muted);
+            font-size: 14px;
+            opacity: 0.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-divider);
+        }
+
+        /* CONCLUSION */
+        .conclusion {
+            background: var(--bg-conclusion);
+            color: rgba(255, 255, 255, 0.95);
+            padding: 56px 40px;
+            margin: 60px -40px 0 -40px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        .conclusion.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .conclusion-title {
+            font-family: 'Lora', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            color: #ffffff;
+        }
+
+        .conclusion p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 16px;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .conclusion p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--bg-footer);
+            border-top: 1px solid var(--border-subtle);
+            padding: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-left: 252px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 48px 32px;
+            }
+
+            .hero {
+                padding: 60px 32px;
+                margin: 0 -32px 48px -32px;
+            }
+
+            .conclusion {
+                padding: 48px 32px;
+                margin: 48px -32px 0 -32px;
+            }
+
+            .footer {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 999;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                border-right: none;
+                border-bottom: none;
+                overflow: auto;
+                padding-top: 80px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .footer {
+                margin-left: 0;
+            }
+
+            .hero {
+                padding: 48px 24px;
+                margin: 0 -24px 40px -24px;
+            }
+
+            .container {
+                padding: 40px 24px;
+            }
+
+            .conclusion {
+                padding: 40px 24px;
+                margin: 40px -24px 0 -24px;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .chapter-title {
+                font-size: 24px;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .container {
+                padding: 32px 20px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+                margin: 0 -20px 32px -20px;
+            }
+
+            .conclusion {
+                padding: 32px 20px;
+                margin: 32px -20px 0 -20px;
+            }
+
+            .hero-title {
+                font-size: 22px;
+            }
+
+            .hero-subtitle {
+                font-size: 14px;
+            }
+
+            .hero-meta {
+                gap: 12px;
+                font-size: 12px;
+            }
+
+            .chapter-title {
+                font-size: 20px;
+            }
+
+            .section-label {
+                font-size: 9px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            .pull-quote p {
+                font-size: 16px;
+            }
+
+            .insight-card {
+                padding: 16px;
+            }
+
+            .grid-item {
+                padding: 16px;
+                min-height: auto;
+            }
+
+            .grid-number {
+                font-size: 48px;
+            }
+
+            .comparison-item {
+                font-size: 13px;
+            }
+
+            .takeaway-number {
+                font-size: 24px;
+            }
+
+            .takeaway-content p {
+                font-size: 13px;
+            }
+
+            .conclusion-title {
+                font-size: 20px;
+            }
+
+            .conclusion p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- MOBILE MENU TOGGLE -->
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-title">No More Mr. Nice Guy</div>
+
+        <!-- THEME SWITCHER -->
+        <div class="theme-switcher-wrap">
+            <div class="nav-group-label theme-switcher-label">Appearance</div>
+            <div class="theme-switcher" role="group" aria-label="Choose theme">
+                <button class="theme-btn" data-theme="default" aria-pressed="true">
+                    <span class="swatch swatch-default" aria-hidden="true"></span>
+                    Warm
+                </button>
+                <button class="theme-btn" data-theme="gruvbox" aria-pressed="false">
+                    <span class="swatch swatch-gruvbox" aria-hidden="true"></span>
+                    Gruvbox
+                </button>
+                <button class="theme-btn" data-theme="rose-pine-dawn" aria-pressed="false">
+                    <span class="swatch swatch-rosepine" aria-hidden="true"></span>
+                    Rosé
+                </button>
+            </div>
+        </div>
+
+        <div class="nav-group" style="margin-top:32px;">
+            <div class="nav-group-label">This Chapter</div>
+            <div class="nav-items">
+                <a href="#intro" class="nav-item active" data-section="intro">
+                    <span class="nav-number">01</span>
+                    <span>Overview</span>
+                </a>
+                <a href="#the-tragedy" class="nav-item" data-section="the-tragedy">
+                    <span class="nav-number">02</span>
+                    <span>The Tragedy</span>
+                </a>
+                <a href="#barriers" class="nav-item" data-section="barriers">
+                    <span class="nav-number">03</span>
+                    <span>Seven Barriers</span>
+                </a>
+                <a href="#fear" class="nav-item" data-section="fear">
+                    <span class="nav-number">04</span>
+                    <span>Fear & Self-Sabotage</span>
+                </a>
+                <a href="#distorted-self" class="nav-item" data-section="distorted-self">
+                    <span class="nav-number">05</span>
+                    <span>Distorted Identity</span>
+                </a>
+                <a href="#reclamation" class="nav-item" data-section="reclamation">
+                    <span class="nav-number">06</span>
+                    <span>The Path Forward</span>
+                </a>
+                <a href="#charlie" class="nav-item" data-section="charlie">
+                    <span class="nav-number">07</span>
+                    <span>Charlie's Story</span>
+                </a>
+                <a href="#transformation" class="nav-item" data-section="transformation">
+                    <span class="nav-number">08</span>
+                    <span>The Transformation</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-group-label">Themes</div>
+            <div class="nav-items">
+                <a href="#authenticity" class="nav-item" data-section="authenticity">
+                    <span class="nav-number">A</span>
+                    <span>Authenticity</span>
+                </a>
+                <a href="#potential" class="nav-item" data-section="potential">
+                    <span class="nav-number">B</span>
+                    <span>Full Potential</span>
+                </a>
+                <a href="#integration" class="nav-item" data-section="integration">
+                    <span class="nav-number">C</span>
+                    <span>Integration</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="hero">
+            <h1 class="hero-title">Get The Life You Want</h1>
+            <p class="hero-subtitle">Discover Your Passion and Purpose in Life, Work, and Career</p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">Chapter</div>
+                    <div>9 (Final)</div>
+                </div>
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">Author</div>
+                    <div>Dr. Robert A. Glover</div>
+                </div>
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">Focus</div>
+                    <div>Reclaiming Full Potential</div>
+                </div>
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">Thesis</div>
+                    <div>Authentic living liberates</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- INTRO -->
+            <section id="intro" class="content-block">
+                <div class="chapter-header">
+                    <div class="chapter-number">Chapter 9</div>
+                    <h2 class="chapter-title">Getting the Life You Want</h2>
+                    <p class="chapter-description">The final measure of recovering from Nice Guy Syndrome is not
+                        relationship status—it's whether a man is living to his full potential, authetically, with
+                        purpose, and without the self-imposed limits of people-pleasing.</p>
+                </div>
+
+                <p>Nice Guys spend so much energy seeking approval, hiding their true selves, and playing it safe that
+                    they fail at the deepest level: <strong>they abandon their own lives in the pursuit of others'
+                        approval.</strong> This final chapter moves beyond relationships into the expansive question
+                    that defines a man's entire existence: <strong>Are you becoming who you are capable of
+                        being?</strong></p>
+
+                <p>Dr. Glover observes that the most intelligent, talented men he's worked with consistently fall short
+                    of their potential. This is not a failure of ability—it's a failure of <strong>emotional
+                        permission.</strong> Nice Guys have internalized the message that their desires, ambitions, and
+                    dreams are secondary to keeping others comfortable. The tragedy is not that they fail; it's that
+                    <strong>they never fully try.</strong></p>
+
+                <div class="insight-card">
+                    <div class="insight-label">Core Insight</div>
+                    <p><strong>The Nice Guy Syndrome doesn't just sabotage relationships—it sabotages entire
+                            lives.</strong> Countless intelligent, talented men waste their potential wallowing in
+                        mediocrity, not because they lack ability, but because they lack the emotional independence to
+                        pursue what actually matters to them.</p>
+                </div>
+            </section>
+
+            <div class="divider">·</div>
+
+            <!-- THE TRAGEDY -->
+            <section id="the-tragedy" class="content-block">
+                <div class="section-label">The Cost of Self-Abandonment</div>
+
+                <p>The tragedy of Nice Guy Syndrome extends far beyond dating and marriage—it poisons <strong>every
+                        dimension of life.</strong> While relationship dysfunction often brings men to therapy, the real
+                    crisis is usually broader: <strong>they are dissatisfied with their careers, unfulfilled in their
+                        life direction, stuck in dead-end jobs, and unable to articulate what they actually
+                        want.</strong></p>
+
+                <p>These dynamics mirror each other perfectly. The same behaviors that keep a Nice Guy emotionally
+                    enmeshed in a dysfunctional relationship are identical to those that trap him in a soul-crushing
+                    career: fear masquerading as loyalty, perfectionism blocking progress, inability to advocate for
+                    himself, unconscious recreation of familiar dysfunction, and the belief that his own needs are
+                    inherently selfish.</p>
+
+                <p>Glover makes a devastating observation: <strong>the greatest tragedy of Nice Guy Syndrome is not
+                        failed relationships—it's failed lives.</strong> A man can recover from a breakup. But he may
+                    never recover from the realization at age 60 that he spent four decades in the wrong career, living
+                    in the wrong place, pursuing the wrong goals—all because he was more concerned with others' approval
+                    than his own authentic existence.</p>
+
+                <div class="pull-quote">
+                    <p>"Since Nice Guys spend so much time seeking approval, hiding their flaws, playing it safe, and
+                        doing the opposite of what works, it makes sense that they would typically fall short of being
+                        all they can be. This is perhaps the greatest tragedy wrought by the Nice Guy Syndrome—countless
+                        intelligent and talented men wasting their lives and wallowing in the mire of mediocrity."</p>
+                </div>
+
+                <p>This statement reframes the entire problem. It's not about relationship skills. It's about
+                    <strong>whether a man has the emotional courage to live for himself.</strong></p>
+            </section>
+
+            <div class="divider">·</div>
+
+            <!-- BARRIERS -->
+            <section id="barriers" class="content-block">
+                <div class="section-label">Seven Barriers to Living Full Potential</div>
+
+                <p>Glover identifies seven interconnected psychological and behavioral patterns that prevent Nice Guys
+                    from achieving what they're capable of. These aren't external obstacles—they're <strong>self-imposed
+                        prisons built from childhood conditioning.</strong></p>
+
+                <div class="grid-3">
+                    <div class="grid-item">
+                        <div class="grid-number">1</div>
+                        <div class="grid-item-title">Fear</div>
+                        <div class="grid-item-desc">Governs every thought, interaction, and life choice. Fear of
+                            failure, success, criticism, and visibility.</div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-number">2</div>
+                        <div class="grid-item-title">Perfectionism</div>
+                        <div class="grid-item-desc">"Doing it right" kills creativity, blocks progress, and prevents
+                            risk-taking and innovation.</div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-number">3</div>
+                        <div class="grid-item-title">Self-Reliance</div>
+                        <div class="grid-item-desc">Can't ask for help, can't delegate, can't receive. Believes he must
+                            do everything alone.</div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-number">4</div>
+                        <div class="grid-item-title">Self-Sabotage</div>
+                        <div class="grid-item-desc">Unconsciously prevents success through procrastination, chaos,
+                            caretaking, and unfinished projects.</div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-number">5</div>
+                        <div class="grid-item-title">Distorted Identity</div>
+                        <div class="grid-item-desc">Internalized belief that he's fundamentally inadequate, unworthy,
+                            defective at his core.</div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="grid-number">6</div>
+                        <div class="grid-item-title">Scarcity Mindset</div>
+                        <div class="grid-item-desc">Believes there isn't enough; rationalizes why he can't have what he
+                            wants.</div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 24px;">Beyond these psychological patterns lies a seventh, systemic barrier:
+                    <strong>Nice Guys unconsciously recreate the dysfunctional family systems of their childhood in
+                        their careers.</strong> They find jobs that allow them to reprise old roles—the unappreciated
+                    helper, the silent sufferer, the person whose needs don't matter. They stay far longer than they
+                    should, hoping something will change, never realizing they've chosen the dysfunction.</p>
+            </section>
+
+            <div class="divider">·</div>
+
+            <!-- FEAR & SELF-SABOTAGE -->
+            <section id="fear" class="content-block">
+                <div class="section-label">Fear: The Master Governor</div>
+
+                <p>At the core of every Nice Guy problem sits <strong>fear.</strong> Glover is unequivocal: pretty much
+                    everything a Nice Guy does or doesn't do is governed by fear—thoughts filtered through fear,
+                    interactions dictated by the politics of fear, life choices made to avoid catastrophe.</p>
+
+                <p>This fear operates on two levels. First is the fear of external disaster: <strong>failure, poverty,
+                        criticism, rejection.</strong> A Nice Guy won't demand his promised raise because he fears his
+                    boss will be angry. He won't quit a soul-crushing job because he fears financial ruin. He won't go
+                    back to school because he fears he'll fail. He won't start the business because he fears losing
+                    everything.</p>
+
+                <p>But beneath these fears lies something more insidious: <strong>the fear of success.</strong> This
+                    paradox is psychologically sophisticated. Success would mean visibility, scrutiny, higher
+                    expectations. Success would expose him to criticism. Success would demand he actually own his
+                    identity and defend his choices. <strong>Success would require him to stop hiding.</strong></p>
+
+                <div class="insight-card">
+                    <div class="insight-label">Psychological Pattern</div>
+                    <p>Nice Guys fear success as much as failure. They're terrified that if they actually achieve their
+                        goals, they'll be revealed as frauds, they won't meet expectations, they'll be criticized,
+                        they'll lose control, or they'll mess it up. Rather than face these fears, they settle for
+                        operating at a fraction of their capacity.</p>
+                </div>
+
+                <p><strong>Self-sabotage</strong> is how this fear becomes concrete. A Nice Guy will procrastinate on
+                    important projects, take on too much to overwhelm himself, find endless distractions, or simply not
+                    finish what he starts. He'll caretake others instead of focusing on his own goals. All of these
+                    behaviors serve the same function: <strong>they prevent him from achieving the success he
+                        unconsciously fears.</strong></p>
+
+                <p>The psychology here is sophisticated. By sabotaging himself, a Nice Guy maintains psychological
+                    control. If he fails, it's not because he's genuinely inadequate—it's because he didn't try hard
+                    enough, didn't have time, was distracted by someone else's needs, or had bad luck. <strong>His core
+                        identity remains protected, and his deepest fear—that he is fundamentally inadequate—never gets
+                        tested.</strong></p>
+            </section>
+
+            <div class="divider">·</div>
+
+            <!-- DISTORTED SELF -->
+            <section id="distorted-self" class="content-block">
+                <div class="section-label">The Glass Ceiling of Toxic Shame</div>
+
+                <p>Beneath all these surface behaviors lies something more foundational: <strong>a distorted self-image
+                        rooted in childhood emotional neglect or dysfunction.</strong> When a child's needs aren't met
+                    in timely, judicious ways, he develops a devastating conclusion: <em>if my needs aren't important,
+                        neither am I.</em></p>
+
+                <p>This becomes <strong>toxic shame—</strong>the core belief that he is fundamentally defective,
+                    inadequate, unworthy. All Nice Guys carry this, though the severity varies. It shapes everything.
+                </p>
+
+                <p>When a child is asked to care for a critical parent, a depressed parent, or a needy parent, he gets a
+                    double dose of this shame. He can't fix his mother's depression, can't please his father's
+                    criticism, can't meet his grandmother's endless needs. <strong>The child concludes he is failing at
+                        the most basic task of caring for family.</strong> This produces <strong>a deep-seated sense of
+                        inadequacy that carries into adulthood</strong> as the belief that he's never good enough, never
+                    doing enough, never being enough.</p>
+
+                <div class="pull-quote">
+                    <p>"As a result of their inability to fix, please, or take care of one or more parents, many Nice
+                        Guys developed a deep-seated sense of inadequacy. They believed they should be able to do the
+                        job. Nevertheless, they never could seem to do it right or good enough—mom was still depressed,
+                        dad was still critical."</p>
+                </div>
+
+                <p>This belief operates as an <strong>emotional and cognitive glass ceiling.</strong> It's invisible,
+                    but it's real. A Nice Guy can perceive his potential intellectually, but emotionally, he can't cross
+                    into it. When he approaches success, he hits this ceiling, experiences shame, and retreats to
+                    familiar, smaller territory.</p>
+
+                <p><strong>Everyone around him can see his talent.</strong> His colleagues recognize his intelligence.
+                    His friends observe his capability. But his distorted childhood lenses won't allow him to accurately
+                    perceive his own value. <strong>His self-image is frozen at age 7.</strong></p>
+            </section>
+
+            <div class="divider">·</div>
+
+            <!-- RECLAMATION -->
+            <section id="reclamation" class="content-block">
+                <div class="section-label">The Road to Reclamation</div>
+
+                <p>Recovery from Nice Guy Syndrome at this level requires more than behavior change—it requires
+                    <strong>a fundamental reconstruction of identity.</strong> It means learning to approve of himself
+                    rather than desperately seeking approval from others. It means accepting that his desires are valid,
+                    his needs are important, and his dreams matter.</p>
+
+                <p>Glover is explicit: <strong>the goal is not money or material success—it's discovering passion and
+                        living up to potential.</strong> When a Nice Guy begins this recovery work, something shifts. He
+                    starts to accept himself as he is. This self-acceptance allows him to <strong>embrace his passions
+                        and face his fears</strong> rather than running from them.</p>
+
+                <p>As this happens, a more accurate view of both self and world emerges. <strong>The abundance of the
+                        universe begins flowing into his life.</strong> Sometimes this is financial success. Sometimes
+                    it's genuine love. Sometimes it's professional recognition. Sometimes it's the bright lights of
+                    earned respect. The form varies, but the essence is the same: <strong>a man living authentically
+                        begins to receive what he actually deserves.</strong></p>
+
+                <div class="insight-card">
+                    <div class="insight-label">The Transformation Sequence</div>
+                    <p><strong>1.</strong> Accept yourself → <strong>2.</strong> Embrace your passions →
+                        <strong>3.</strong> Face your fears → <strong>4.</strong> Develop accurate self-perception →
+                        <strong>5.</strong> Abundance flows naturally → <strong>6.</strong> Live to full potential</p>
+                </div>
+
+                <p>This is not positive thinking or wishful fantasy. It's a predictable psychological sequence. When a
+                    man stops using his energy to hide, to seek approval, to avoid visibility, that energy becomes
+                    available for <strong>actual creation and authentic pursuit.</strong> When he stops sabotaging
+                    himself, progress becomes possible. When he stops distorting his own capabilities, he can actually
+                    use them.</p>
+            </section>
+
+            <div class="divider">·</div>
+
+            <!-- CHARLIE'S STORY -->
+            <section id="charlie" class="content-block">
+                <div class="section-label">The Case of Charlie: From Paralysis to Purpose</div>
+
+                <p>Glover presents Charlie as the archetypal recovering Nice Guy. Charlie was stuck—intellectually
+                    talented with an engineering degree, yet still working the same job he'd held before college. His
+                    employer had promised a promotion upon graduation. When it never came, Charlie stifled his
+                    resentment and stayed, never advocating for himself, never looking elsewhere.</p>
+
+                <p>Charlie's one passion was flying. Despite his mother's warnings of disaster, he'd begun flying
+                    lessons. But he couldn't complete them. He dreamed of his pilot's license but never seemed able to
+                    take the steps necessary to achieve it. <strong>Fear kept him grounded.</strong></p>
+
+                <p>When Charlie discovered the Nice Guy description online, he was mortified. Someone had written about
+                    his life. But even with this recognition, it took him <strong>eight months to work up the courage to
+                        contact someone for help.</strong> The idea of being vulnerable in a group terrified him.
+                    <strong>His fear of his own vulnerability was greater than his desire for change.</strong></p>
+
+                <p>Then Charlie made a crucial decision: <strong>if something frightened him that much, he needed to
+                        face it.</strong> This simple principle—meet fear with courage rather than retreat—became his
+                    North Star. He joined the group.</p>
+
+                <div class="pull-quote">
+                    <p>"It was at that point that Charlie made a decision that changed his life. Charlie decided that if
+                        something frightened him that much, he needed to face his fear and do it. Little did he know
+                        then, but that decision was just the beginning of a journey that would lead Charlie toward the
+                        rediscovery of his passion and purpose in life."</p>
+                </div>
+            </section>
+
+            <!-- TRANSFORMATION -->
+            <section id="transformation" class="content-block">
+                <div class="section-label">Charlie's Transformation: Fear as Guide</div>
+
+                <p>What follows is a masterclass in psychological recovery. Over eighteen months, Charlie lived by one
+                    principle: <strong>if he was afraid of something, he confronted it.</strong> Not recklessly, but
+                    systematically, with support.</p>
+
+                <div class="takeaways">
+                    <div class="takeaway-item">
+                        <div class="takeaway-number">1</div>
+                        <div class="takeaway-content">
+                            <p><span class="takeaway-title">Increased vulnerability in group work.</span> He stopped
+                                hiding and started revealing himself, initially terrifying but ultimately liberating.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway-item">
+                        <div class="takeaway-number">2</div>
+                        <div class="takeaway-content">
+                            <p><span class="takeaway-title">Examined his family patterns.</span> He looked directly at
+                                the neglect and fear-based messages of his childhood, rather than pretending they didn't
+                                matter.</p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway-item">
+                        <div class="takeaway-number">3</div>
+                        <div class="takeaway-content">
+                            <p><span class="takeaway-title">Confronted his father.</span> In formal counseling, he told
+                                his father directly how his unavailability had harmed him. This confrontation dissolved
+                                old dynamics.</p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway-item">
+                        <div class="takeaway-number">4</div>
+                        <div class="takeaway-content">
+                            <p><span class="takeaway-title">Stopped blaming his girlfriend for his compromises.</span>
+                                He owned his choices and took responsibility for pursuing what mattered to him.</p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway-item">
+                        <div class="takeaway-number">5</div>
+                        <div class="takeaway-content">
+                            <p><span class="takeaway-title">Changed flying schools.</span> When his current school
+                                wasn't meeting his needs, he switched. This simple act—choosing what served him—was
+                                psychologically huge.</p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway-item">
+                        <div class="takeaway-number">6</div>
+                        <div class="takeaway-content">
+                            <p><span class="takeaway-title">Interviewed for new jobs.</span> He began actively pursuing
+                                positions that used his engineering degree and valued his skills, rather than accepting
+                                his current dead-end role.</p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway-item">
+                        <div class="takeaway-number">7</div>
+                        <div class="takeaway-content">
+                            <p><span class="takeaway-title">Addressed his inadequacy beliefs.</span> He directly
+                                confronted the family messages about playing it safe and the distorted beliefs about his
+                                own qualifications.</p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway-item">
+                        <div class="takeaway-number">8</div>
+                        <div class="takeaway-content">
+                            <p><span class="takeaway-title">Set boundaries with his girlfriend.</span> He stopped
+                                accepting her lack of participation in household responsibilities, expressing his needs
+                                directly.</p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway-item">
+                        <div class="takeaway-number">9</div>
+                        <div class="takeaway-content">
+                            <p><span class="takeaway-title">Achieved his pilot's license.</span> He took his solo
+                                flight. The metaphor is profound—he learned to fly, literally and figuratively, alone.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway-item">
+                        <div class="takeaway-number">10</div>
+                        <div class="takeaway-content">
+                            <p><span class="takeaway-title">Became the center of attention.</span> His group took him to
+                                dinner for his birthday, and he allowed himself to be celebrated rather than deflecting
+                                praise or disappearing.</p>
+                        </div>
+                    </div>
+
+                    <div class="takeaway-item">
+                        <div class="takeaway-number">11</div>
+                        <div class="takeaway-content">
+                            <p><span class="takeaway-title">Got hired at a firm that believed in him.</span> The new
+                                employer expressed that Charlie was capable, talented, and had something valuable to
+                                offer. Charlie finally worked somewhere he was actually valued.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p>Glover describes witnessing "a metamorphosis of epic proportions." Charlie had transformed from an
+                    introverted, frightened, passive Nice Guy into an evolving man with passion and purpose.
+                    <strong>Every achievement was small, but each represented choosing himself over safety.</strong>
+                    Accumulated, they created a completely different man.</p>
+
+                <div class="insight-card">
+                    <div class="insight-label">The Pattern</div>
+                    <p><strong>Fear itself becomes the guide.</strong> Whatever Charlie was most afraid of—visibility,
+                        vulnerability, confrontation, self-advocacy, standing out—became the thing he moved toward. This
+                        inverts the Nice Guy dynamic. Instead of fear stopping him, it directed him.</p>
+                </div>
+            </section>
+
+            <div class="divider">·</div>
+
+            <!-- INTEGRATION & CONCLUSION -->
+            <section id="integration" class="content-block">
+                <div class="section-label">From Recovery to Integration</div>
+
+                <p>The final chapter of <em>No More Mr. Nice Guy</em> is fundamentally about
+                    <strong>integration.</strong> It's about integrating the authentic self that was suppressed,
+                    integrating masculine and emotional dimensions, integrating ambition with integrity, integrating
+                    personal desire with relational responsibility.</p>
+
+                <p>This integration looks different in practice for each man, but the principle is universal: <strong>a
+                        man cannot fully live until he stops living for others' approval.</strong> He cannot become his
+                    full self while fragments of his identity remain hidden. He cannot access his potential while fear
+                    governs his choices.</p>
+
+                <p>Glover's observation about what works is crystalline: <strong>the tools and insights in recovery
+                        actually work.</strong> This isn't theory or wishful thinking. After thousands of hours working
+                    with recovering Nice Guys, he's observed the consistent pattern: men who do this work transform
+                    their lives.</p>
+
+                <div class="pull-quote">
+                    <p>"Having finished reading this book, I encourage you to start again at the beginning. Take the
+                        time to do the Breaking Free exercises... Working the program of recovery presented in No More
+                        Mr. Nice Guy! is one of the greatest gifts you can give yourself and your loved ones. As you
+                        learn to approve of yourself you will discover within you an unimaginable ability to love and
+                        accept love and to live life to its fullest."</p>
+                </div>
+
+                <p>This is the promise and the challenge: <strong>self-approval unlocks everything.</strong> When a man
+                    stops needing external validation to feel okay, he becomes free to pursue what actually matters. His
+                    energy is available for creation, for genuine intimacy, for purpose, for excellence—<strong>not to
+                        impress, but to express.</strong></p>
+
+                <p>The expansion Glover describes is "initially frightening, but it is the essence of who you are and
+                    what you are meant to be." <strong>Living fully is scary,</strong> but living partially is tragic.
+                </p>
+            </section>
+
+            <!-- FINAL COMPARISON -->
+            <div class="comparison" style="margin: 48px 0;">
+                <div class="comparison-col">
+                    <div class="comparison-header">The Nice Guy Trap</div>
+                    <div class="comparison-items">
+                        <div class="comparison-item">Seeks external approval compulsively</div>
+                        <div class="comparison-item">Hides authentic desires and needs</div>
+                        <div class="comparison-item">Fear dictates all major choices</div>
+                        <div class="comparison-item">Self-sabotages to prevent exposure</div>
+                        <div class="comparison-item">Recreates childhood dysfunction</div>
+                        <div class="comparison-item">Beliefs limit potential artificially</div>
+                        <div class="comparison-item">Operates at fraction of capacity</div>
+                        <div class="comparison-item">Wastes intelligence on hiding</div>
+                        <div class="comparison-item">Never advocates for himself</div>
+                        <div class="comparison-item">Settles for mediocrity</div>
+                    </div>
+                </div>
+
+                <div class="comparison-col">
+                    <div class="comparison-header">The Integrated Life</div>
+                    <div class="comparison-items">
+                        <div class="comparison-item">Approves of himself regardless</div>
+                        <div class="comparison-item">Expresses authentic desires freely</div>
+                        <div class="comparison-item">Values guide choices instead</div>
+                        <div class="comparison-item">Supports own success actively</div>
+                        <div class="comparison-item">Chooses healthy new patterns</div>
+                        <div class="comparison-item">Perceives self accurately</div>
+                        <div class="comparison-item">Operates at full potential</div>
+                        <div class="comparison-item">Uses intelligence to create</div>
+                        <div class="comparison-item">Advocates powerfully</div>
+                        <div class="comparison-item">Pursues excellence with purpose</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONCLUSION -->
+            <div class="conclusion">
+                <h3 class="conclusion-title">The Freedom of Full Living</h3>
+                <p>The final message of this chapter is not about becoming rich, famous, or impressive. It's simpler and
+                    more profound: <strong>become free to be yourself.</strong></p>
+                <p>Freedom to stop seeking approval. Freedom to start getting what you want. Freedom to live
+                    authentically, to pursue your passion, to discover your purpose. Freedom to become who you actually
+                    are, capable of being.</p>
+                <p>This is the work. This is the promise. <strong>This is what a recovered Nice Guy can offer himself
+                        and everyone he loves.</strong></p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Based on <em>No More Mr. Nice Guy: A Proven Program for Getting What You Want in Love, Sex, and Life</em>
+                by Dr. Robert A. Glover</p>
+            <p style="margin-top: 12px; color: var(--text-muted);">© Editorial summary | For educational purposes</p>
+        </div>
+    </div>
+
+    <script>
+        // ─── THEME SYSTEM ───────────────────────────────────────
+        const THEME_KEY = 'nmng-ch9-theme';
+        const metaThemeColor = document.getElementById('metaThemeColor');
+
+        const themeMetaColors = {
+            'default': '#f8f7f4',
+            'gruvbox': '#282828',
+            'rose-pine-dawn': '#faf4ed'
+        };
+
+        function applyTheme(theme, save) {
+            // Update data-theme attribute on html element
+            document.documentElement.setAttribute('data-theme', theme === 'default' ? '' : theme);
+
+            // Update meta theme-color
+            metaThemeColor.setAttribute('content', themeMetaColors[ theme ] || themeMetaColors[ 'default' ]);
+
+            // Update switcher button states
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                const pressed = btn.dataset.theme === theme;
+                btn.setAttribute('aria-pressed', String(pressed));
+            });
+
+            if (save) localStorage.setItem(THEME_KEY, theme);
+        }
+
+        // Restore on load (before paint)
+        const saved = localStorage.getItem(THEME_KEY) || 'default';
+        applyTheme(saved, false);
+
+        // Wire up buttons
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.addEventListener('click', () => applyTheme(btn.dataset.theme, true));
+        });
+
+        // ─── MOBILE MENU ─────────────────────────────────────────
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // ─── SIDEBAR NAVIGATION ──────────────────────────────────
+        const navItems = document.querySelectorAll('.nav-item');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+                sidebar.classList.remove('active');
+            });
+        });
+
+        // ─── INTERSECTION OBSERVER FOR REVEAL ────────────────────
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.content-block, .pull-quote, .insight-card, .grid-3, .comparison, .takeaways, .conclusion').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ─── SMOOTH SCROLL ────────────────────────────────────────
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    const offset = 60;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
